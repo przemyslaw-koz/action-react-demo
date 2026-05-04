@@ -1,7 +1,5 @@
 name: Display issue details
-on:
-  issues:
-    types: [created, edited, reopened]
+on: issues
 
 jobs:
   show-info:
