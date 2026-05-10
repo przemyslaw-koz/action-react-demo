@@ -9,13 +9,14 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v5
-      - name: Chace deps
+      - name: Cache deps
         id: cache
         uses: actions/cache@v5
         with:
-          path: ~/.npm
+          path: node_modules
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install deps
+        if: steps.cache.output.cache-hot != 'true'
         run: npm ci
       - name: Lint code
         run: npm run lint
@@ -24,13 +25,14 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v5
-      - name: Chace deps
+      - name: Cache deps
         id: cache
         uses: actions/cache@v5
         with:
-          path: ~/.npm
+          path: node_modules
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install deps
+        if: steps.cache.output.cache-hot != 'true'
         run: npm ci
       - name: Test code
         id: run-tests
@@ -47,13 +49,14 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v5
-      - name: Chace deps
+      - name: Cache deps
         id: cache
         uses: actions/cache@v5
         with:
-          path: ~/.npm
+          path: node_modules
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install deps
+        if: steps.cache.output.cache-hot != 'true'
         run: npm ci
       - name: Build website
         id: build-website
