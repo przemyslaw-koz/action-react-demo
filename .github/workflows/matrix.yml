@@ -9,7 +9,7 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
     steps:
       - name: Get Code
-        usees: actions/checkout@v7
+        uses: actions/checkout@v7
       - name: Instal NodeJs
         uses: actions/setup-node@v3
         with:
